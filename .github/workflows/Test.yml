@@ -13,14 +13,14 @@ jobs:
         mkdir BuildResults\TestBench-Debug
     - name: Build library
       run: |
-        dotnet msbuild -nologo -restore -p:Configuration=Debug TestBench
-        copy TestBench\bin\Debug\*.nupkg BuildResults\TestBench-Debug
+        dotnet msbuild -nologo -restore -p:Configuration=Debug Test
+        copy Test\bin\Debug\*.nupkg BuildResults\TestBench-Debug
     - name: Build standard suite
       run: |
-        dotnet restore TestCore
-        dotnet msbuild -nologo -p:Configuration=Debug TestCore
+        dotnet restore Test
+        dotnet msbuild -nologo -p:Configuration=Debug Test
     - name: Run standard suite
-      run: dotnet test -c Debug TestCore
+      run: dotnet test -c Debug Test
     - uses: actions/upload-artifact@v1
       with:
         name: RunnerOutput-Debug
