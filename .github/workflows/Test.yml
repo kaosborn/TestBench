@@ -11,8 +11,8 @@ jobs:
       run: mkdir TestResults
     - name: Build library
       run: |
-        dotnet msbuild -nologo -restore -p:Configuration=Debug TestBench
-        copy TestBench\bin\Debug\*.nupkg TestResults\
+        dotnet msbuild -nologo -restore -p:Configuration=Debug Sequences
+        copy Test\bin\Debug\*.nupkg TestResults\
     - name: Build standard suite
       run: dotnet msbuild -nologo -restore -p:Configuration=Debug Test
     - name: Run standard suite
