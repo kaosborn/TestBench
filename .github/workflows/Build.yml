@@ -9,20 +9,19 @@ jobs:
         fetch-depth: 1
     - name: Initialize
       run: |
-        mkdir BuildResults
-        mkdir BuildResults\Release
-        dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools
+        mkdir TestResults
+        dotnet tool install dotnet-reportgenerator-globaltool --global
     - name: Build library
       run: |
         dotnet msbuild -nologo -restore -p:Configuration=Release Sequences
-        copy Sequences\bin\Release\*.nupkg BuildResults\Release\
+        copy Sequences\bin\Release\*.nupkg TestResults\
     - name: Build coverage suite
       run: dotnet msbuild -nologo -restore -p:Configuration=Release Test
     - name: Run coverage suite
       run: dotnet test -c Release -p:CollectCoverage=true -p:CoverletOutputFormat=lcov -p:CoverletOutput=..\TestResults\lcov Test
     - name: Create coverage report
-      run: .\tools\reportgenerator.exe -reports:.\TestResults\lcov.info -targetdir:.\BuildResults\CoverageReport\
+      run: reportgenerator.exe -reports:.\TestResults\lcov.info -targetdir:.\TestResults\CoverageReport\
     - uses: actions/upload-artifact@v1
       with:
-        name: RunnerOutput-Release
-        path: BuildResults
+        name: TestBench-Build
+        path: TestResults
