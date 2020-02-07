@@ -7,16 +7,16 @@ namespace Test
     public class TestSequences
     {
         [TestMethod]
-        public void TestOdd()
+        public void Case1()
         {
-            int expected = 1;
-            foreach (int actual in Numbers.GetOddDigitsLessThan (8))
+            int expected = 0;
+            foreach (int actual in Numbers.GetSingleDigitNumbers())
             {
                 Assert.AreEqual (expected, actual);
-                expected += 2;
+                expected++;
             }
 
-            Assert.AreEqual (9, expected);
+            Assert.AreEqual (10, expected);
         }
     }
 }

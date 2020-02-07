@@ -4,14 +4,11 @@ namespace Sequences
 {
     public class Numbers
     {
-        public static IEnumerable<int> GetOddDigitsLessThan (int lim)
+        public static IEnumerable<int> GetSingleDigitNumbers()
         {
-            int result = 1;
-            while (result < lim)
-            {
-                yield return result;
-                result += 2;
-            }
+            int index = 0;
+            while (index < 10)
+                yield return index++;
         }
     }
 }
